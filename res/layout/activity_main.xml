@@ -1,0 +1,131 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <LinearLayout
+        android:id="@+id/button_container"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:weightSum="2"
+        android:gravity="center_vertical"
+        android:background="#F55E3D"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/Button_Picup"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="Picup"
+            android:src="@android:drawable/button_onoff_indicator_on"
+            android:layout_marginRight="0dp"
+            android:paddingRight="0dp"
+            />
+
+        <ImageButton
+            android:id="@+id/Button_Delivery"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="Delivery"
+            android:src="@android:drawable/button_onoff_indicator_off"
+            android:layout_marginLeft="0dp"
+            android:paddingLeft="0dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/outlet_selector_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/button_container"
+        android:layout_centerVertical="true"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/outlet_select_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:textSize="14sp"
+            android:text="select outlet below" />
+
+        <Spinner
+            android:id="@+id/outlet_selector_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/outlet_select_text"
+            android:layout_marginLeft="20dp"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:background="#F55E3D"
+        android:layout_marginLeft="0dp" >
+
+        <LinearLayout 
+            android:id="@+id/textView_container"
+            android:orientation="vertical"
+            android:layout_width="257dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="0dp">
+
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="257dp"
+                android:layout_height="wrap_content"
+                android:editable="false"
+                android:ems="10"
+                android:textSize="17sp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:text="Picup your order from"
+                android:focusable="false" >
+            </EditText>
+        
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="257dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:editable="false"
+            android:ems="10"
+            android:text="@string/address"
+            android:textColor="@android:color/secondary_text_dark_nodisable"
+            android:textSize="14sp"
+            android:focusable="false" />
+
+	</LinearLayout>
+
+        <ImageView
+            android:id="@+id/goButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="50dp"
+            android:onClick="goButtonClick"
+            android:layout_alignParentRight="true"
+            android:soundEffectsEnabled="true"
+            android:src="@drawable/gotrans" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ChickenCounty</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="address">chicken count
+        bannerghatta road \n in front of spar hyper market</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_section1">Soups Veg</string>
+    <string name="title_section2">Soups Nonveg</string>
+    <string name="title_section3">Starters Veg</string>
+    <string name="title_section4">Starters Nonveg</string>
+    <string name="title_section5">Tandoor</string>
+    <string name="title_section6">Biryani</string>
+    <string name="title_section7">Rice</string>
+    <string name="title_section8">Noodle &amp; Chopsy</string>
+    <string name="title_section9">Chicken Dry &amp; Gravy (Chinese)</string>
+    <string name="title_section10">Chicken Dry &amp; Gravy (Indian)</string>
+    <string name="title_section11">Mutton</string>
+    <string name="title_section12">Fish seasonal</string>
+    <string name="title_section13">Egg</string>
+    <string name="title_section14">Rolls</string>
+
+</resources>

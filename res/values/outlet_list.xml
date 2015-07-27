@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="choose_outlet_message">Choose an outlet</string>
+    <string-array name="outlet_list">
+        <item >Banngerghatta Road</item>
+        <item >New BEL Road</item>
+        <item >GandhiNagar</item>
+    </string-array>
+    
+</resources>
