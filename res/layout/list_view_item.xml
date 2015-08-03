@@ -15,11 +15,10 @@
         android:src="@drawable/ic_launcher" />
 
     <TextView
-        android:id="@+id/Dishes"
+        android:id="@+id/Dish_Name"
         android:layout_width="fill_parent"
-        android:layout_height="26dip"
+        android:layout_height="20dip"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:layout_toRightOf="@id/icon"
         android:editable="false"
         android:ellipsize="marquee"
@@ -28,31 +27,44 @@
         android:textSize="16sp" />
 
     <LinearLayout
+        android:id="@+id/price_quantity_container"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/icon"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/Dishes"
+        android:layout_below="@+id/Dish_Name"
         android:layout_toRightOf="@id/icon"
+        android:gravity="right"
         android:orientation="horizontal" >
+
+        <!--
+             <Spinner
+            android:id="@+id/quanity"
+            style="@style/spinnerItemStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/price"
+            android:gravity="top"
+            android:textAlignment="viewEnd"
+            android:background="#00FF00"
+             />
+        -->
+
+        <TextView
+            android:id="@+id/priceTag"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:editable="false"
+            android:text="Price: Rs."
+            android:textSize="12sp" 
+            />
 
         <TextView
             android:id="@+id/price"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:editable="false"
             android:gravity="center_vertical"
-            android:text="Example application"
-            android:textSize="16sp" />
-
-        <Spinner
-            android:id="@+id/quanity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-             />
-        
+            android:textSize="12sp" />
     </LinearLayout>
 
 </RelativeLayout>

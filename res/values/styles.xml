@@ -16,9 +16,14 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-    <!--  Application Theme with No Actionbar -->
+    <!-- Application Theme with No Actionbar -->
     <style name="AppTheme.NoTitleBar">
-    <item name="android:windowNoTitle">true</item>
-</style>
+        <item name="android:windowNoTitle">true</item>
+    </style>
 
+    <style name="spinnerItemStyle">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#00FF00</item>
+    </style>
+  
 </resources>

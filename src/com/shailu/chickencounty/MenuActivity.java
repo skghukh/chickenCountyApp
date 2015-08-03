@@ -1,24 +1,47 @@
 package com.shailu.chickencounty;
 
+import java.util.ArrayList;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
 import android.app.Activity;
 import android.app.ActionBar;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.app.ListFragment;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector.OnDoubleTapListener;
+import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.Window;
+import android.view.WindowManager;
 import android.support.v4.widget.DrawerLayout;
+import android.webkit.WebView.FindListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class MenuActivity extends Activity implements
 		NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -39,10 +62,21 @@ public class MenuActivity extends Activity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu);
+		Window window = this.getWindow();
+		int statusBarColor = Color.parseColor("#F55E3D");
 
+		if (statusBarColor == Color.BLACK
+				&& window.getNavigationBarColor() == Color.BLACK) {
+			window.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+		} else {
+			window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+		}
+		window.setStatusBarColor(statusBarColor);
+
+		getActionBar().setBackgroundDrawable(
+				new ColorDrawable(Color.parseColor("#F55E3D")));
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager()
 				.findFragmentById(R.id.navigation_drawer);
-		mTitle = getTitle();
 
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
@@ -53,18 +87,11 @@ public class MenuActivity extends Activity implements
 	public void onNavigationDrawerItemSelected(int position) {
 		// update the main content by replacing fragments
 		FragmentManager fragmentManager = getFragmentManager();
+
 		PlaceholderFragment placeHolderFragment = PlaceholderFragment
 				.newInstance(position + 1);
 		fragmentManager.beginTransaction()
 				.replace(R.id.container, placeHolderFragment).commit();
-		final ListView listview = (ListView) findViewById(R.id.listView1);
-		if (listview != null) {
-			Log.i("CC", "ListView is not null");
-			View child = getLayoutInflater().inflate(R.layout.list_view_item,
-					null);
-			Log.i("CC","child is "+child);
-			listview.addView(child);
-		}
 	}
 
 	public void onSectionAttached(int number) {
@@ -149,7 +176,8 @@ public class MenuActivity extends Activity implements
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
-	public static class PlaceholderFragment extends Fragment {
+	public static class PlaceholderFragment extends ListFragment implements
+			OnItemClickListener {
 		/**
 		 * The fragment argument representing the section number for this
 		 * fragment.
@@ -170,19 +198,55 @@ public class MenuActivity extends Activity implements
 		public PlaceholderFragment() {
 		}
 
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_item_list,
-					container, false);
-			return rootView;
-		}
+		// @Override
+		// public View onCreateView(LayoutInflater inflater, ViewGroup
+		// container,
+		// Bundle savedInstanceState) {
+		// // return inflater.inflate(R.layout.experiment, container, false);
+		// View rootView = inflater.inflate(R.layout.experiment, container,
+		// false);
+		// return rootView;
+		// }
 
 		@Override
 		public void onAttach(Activity activity) {
 			super.onAttach(activity);
 			((MenuActivity) activity).onSectionAttached(getArguments().getInt(
 					ARG_SECTION_NUMBER));
+			DishesAdapter mDishesAdapter;
+
+			ArrayList<Dish> m_parts = new ArrayList<Dish>();
+			mDishesAdapter = new DishesAdapter(getActivity(),
+					R.layout.list_view_item, m_parts);
+			m_parts.add(new Dish("murga", 100));
+			m_parts.add(new Dish("mutton", 200));
+			m_parts.add(new Dish("dal", 300));
+			setListAdapter(mDishesAdapter);
+//			FragmentTransaction ft = getFragmentManager().beginTransaction();
+//			MyDialogFragment newFragment = MyDialogFragment.newInstance();
+//			ft.add(newFragment, "confirmdialog");
+//			ft.commit();
+//			ft.show(newFragment);
+		}
+
+		@Override
+		public void onViewCreated(View view, Bundle savedInstanceState) {
+
+			ListView lv = getListView();
+			lv.setOnItemClickListener(this);
+		}
+
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			Log.i("CC","this is list view item clicked");
+			DialogFragment newFragment = MyDialogFragment.newInstance();
+			newFragment.show(getActivity().getFragmentManager(), "dialog");
+//		    FragmentTransaction ft = getFragmentManager().beginTransaction();
+//			MyDialogFragment newFragment = MyDialogFragment.newInstance();
+//			newFragment.showDialog();
+//			ft.add(newFragment, "myfragment");
+//			ft.commit();
 		}
 	}
 

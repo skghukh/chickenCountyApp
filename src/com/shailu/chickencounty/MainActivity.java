@@ -27,15 +27,6 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		Spinner outletSelector = (Spinner) findViewById(R.id.outlet_selector_spinner);
-		ArrayAdapter<CharSequence> outletArrayAdapter = ArrayAdapter
-				.createFromResource(this, R.array.outlet_list,
-						android.R.layout.simple_spinner_dropdown_item);
-		outletSelector.setAdapter(outletArrayAdapter);
-	}
-
-	public void goButtonClick(View v) {
 		Window window = this.getWindow();
 		int statusBarColor = Color.parseColor("#F55E3D");
 
@@ -46,6 +37,16 @@ public class MainActivity extends Activity {
 			window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 		}
 		window.setStatusBarColor(statusBarColor);
+
+		Spinner outletSelector = (Spinner) findViewById(R.id.outlet_selector_spinner);
+		ArrayAdapter<CharSequence> outletArrayAdapter = ArrayAdapter
+				.createFromResource(this, R.array.outlet_list,
+						android.R.layout.simple_spinner_dropdown_item);
+		outletSelector.setAdapter(outletArrayAdapter);
+	}
+
+	public void goButtonClick(View v) {
+
 		Log.i("CC", "Go Button Clicked");
 		ImageView iv = (ImageView) findViewById(R.id.goButton);
 		if (iv != null) {
@@ -55,8 +56,9 @@ public class MainActivity extends Activity {
 			iv.startAnimation(sgAnimation);
 			iv.playSoundEffect(android.view.SoundEffectConstants.CLICK);
 		}
-		
-		Intent go_intent=new Intent(this, com.shailu.chickencounty.MenuActivity.class);
+
+		Intent go_intent = new Intent(this,
+				com.shailu.chickencounty.MenuActivity.class);
 		startActivity(go_intent);
 	}
 }
